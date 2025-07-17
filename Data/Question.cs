@@ -4,6 +4,5 @@ namespace Quizzler.Data
     {
         public Guid Id { get; set; } = Guid.Empty;
         public string prompt { get; set; } = string.Empty;
-
     }
 }
