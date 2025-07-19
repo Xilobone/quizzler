@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quizzler.Data;
 
@@ -10,9 +11,11 @@ using Quizzler.Data;
 namespace quizzler.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20250719142441_QuestionTypeToJson")]
+    partial class QuestionTypeToJson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.7");
@@ -23,20 +26,20 @@ namespace quizzler.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("prompt")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("type")
+                    b.Property<string>("QuestionType")
                         .IsRequired()
                         .HasMaxLength(21)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("prompt")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Questions");
 
-                    b.HasDiscriminator<string>("type").HasValue("Question");
+                    b.HasDiscriminator<string>("QuestionType").HasValue("Question");
 
                     b.UseTphMappingStrategy();
                 });
