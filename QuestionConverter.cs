@@ -1,7 +1,6 @@
-using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Quizzler.Data;
+using Quizzler.Models;
 
 public class QuestionConverter : JsonConverter<Question>
 {
@@ -27,7 +26,6 @@ public class QuestionConverter : JsonConverter<Question>
 
     public override void Write(Utf8JsonWriter writer, Question value, JsonSerializerOptions options)
     {
-        // Serialize the object normally, including its runtime type properties
         JsonSerializer.Serialize(writer, (object)value, options);
     }
 }

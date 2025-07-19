@@ -1,4 +1,4 @@
-namespace Quizzler.Data
+namespace Quizzler.Models
 {
     public abstract class Question
     {
@@ -6,6 +6,8 @@ namespace Quizzler.Data
         public string prompt { get; set; } = string.Empty;
 
         public string type { get; set; } = string.Empty;
+
+        public User user { get; set; } = User.Empty;
         protected abstract string GetQuestionType();
 
         public void Process()

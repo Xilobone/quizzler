@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Quizzler.Data;
+using Quizzler.Models;
 
 namespace Quizzler.Controllers
 {
@@ -29,7 +30,7 @@ namespace Quizzler.Controllers
         public IActionResult GetQuestion(string id)
         {
             if (!Guid.TryParse(id, out Guid guid)) return BadRequest("Not a valid guid");
-
+            
 
             Question? question = _context.Questions.FirstOrDefault(question => question.Id == guid);
 
