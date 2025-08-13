@@ -6,12 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // // Add services to the container.
 // // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// builder.Services.AddOpenApi();
+// builder.Services.AddEndpointsApiExplorer(); // Needed for Minimal APIs
+// builder.Services.AddSwaggerGen();
 builder.Services.AddControllers()
     .AddJsonOptions(opts =>
     {
         opts.JsonSerializerOptions.Converters.Add(new QuestionConverter());
-        opts.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; // optional but recommended
+        opts.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     });
 
 builder.Services.AddDbContext<DBContext>(options =>
@@ -22,7 +24,7 @@ var app = builder.Build();
 // // // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    // app.MapOpenApi();
 }
 
 app.MapControllers();
